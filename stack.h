@@ -1,22 +1,20 @@
 #ifndef stack_h
 #define stack_h
-
+	struct NODE{
+		float n;
+		NODE* next;
+	};
 class stack{
 	public:
 		stack();
-		//~stack();
-		struct NODE{
-			int n;
-			NODE* next;
-		};
-
+		~stack();
 		void push(float f);
+		void display();
+		int getlength();
 		float show();
-		float show2();
 		float pop();
 	private:
-		float n[20];
-		int t;
+		int length;
+		NODE* head;
 };
-
 #endif

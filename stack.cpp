@@ -1,33 +1,37 @@
 #ifndef STACK_CPP
 #define STACK_CPP
-
 stack::stack(){
-	for(int i=0;i<20;i++) n[i]=0;
-	t=-1;
+	head = NULL;
+	length = 0;
 }
-
+stack::~stack(){
+	NODE* curr = head;
+	while( curr != NULL ) {
+    		NODE* next = curr->next;
+    		delete curr;
+    		curr = next;
+	}
+	head = NULL;
+}
 void stack::push(float f){
-	if(t<19){
-		t++;
-		n[t]=f;
-	}
+	NODE* temp = new NODE;
+	temp->n=f;
+	temp->next=head;
+	head = temp;
+	length ++;
 }
-
 float stack::pop(){
-	if(t>=0){
-		float f=n[t];
-		t--;
-	return f;
-	}
-	else return 0;
+	NODE* temp = head->next;
+	float num=head->n;
+	delete head;
+	head = temp;
+	length--;
+	return num;
 }
-
+int stack::getlength(){
+	return(length);
+}
 float stack::show(){
-	return n[t];
+	return head->n;
 }
 
-float stack::show2(){
-	return n[t-1];
-}
-
-#endif
